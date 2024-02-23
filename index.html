@@ -1,17 +1,19 @@
-<script src="https://unpkg.com/web-vitals@3.5.2/dist/web-vitals.js?module"></script>   
-<script>
+<script type ="module">
+	import { getFCP, getLCP, getCLS, getTTFB, getFID } from 'https://unpkg.com/web-vitals@3.5.2/dist/web-vitals.js?module';
+
         function sendToGTM(name, delta, id) {
             ononline = dataLayer.push({
                 event: 'web-vitals',
-                event_category: 'Performance',
-                event_action: name.name,
+                event_category: 'Web Vitals',
+                event_action: name,
                 event_value: Math.round(name.name === 'CLS' ? name.delta * 1000 : name.delta),
-                event_label: name.id
+                event_label: id,
+		transport: 'beacon'
             });
         }
-        webVitals.getCLS(sendToGTM);
-        webVitals.getFID(sendToGTM);
-        webVitals.getLCP(sendToGTM);
-        webVitals.getFCP(sendToGTM);
-        webVitals.getTTFB(sendToGTM);
+        getCLS(sendToGTM);
+        getFID(sendToGTM);
+        getLCP(sendToGTM);
+        getFCP(sendToGTM);
+        getTTFB(sendToGTM);
 </script>
