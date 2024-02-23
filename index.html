@@ -1,0 +1,17 @@
+<script src="https://unpkg.com/web-vitals@2.0.1/dist/web-vitals.umd.js"></script>   
+<script>
+        function sendToGTM(name, delta, id) {
+            ononline = dataLayer.push({
+                event: 'web-vitals',
+                event_category: 'Performance',
+                event_action: name.name,
+                event_value: Math.round(name.name === 'CLS' ? name.delta * 1000 : name.delta),
+                event_label: name.id
+            });
+        }
+        webVitals.getCLS(sendToGTM);
+        webVitals.getFID(sendToGTM);
+        webVitals.getLCP(sendToGTM);
+        webVitals.getFCP(sendToGTM);
+        webVitals.getTTFB(sendToGTM);
+</script>
